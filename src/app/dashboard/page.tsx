@@ -1,6 +1,6 @@
 import React from 'react';
 import { APP_URL } from "@/constants/constants";
-import { getUserAsset } from "@/lib/asset";
+import { getUserUniversalTransferHistory } from "@/lib/asset";
 
 const page = async () => {
 
@@ -9,13 +9,13 @@ const page = async () => {
     return await response.json();
   }
 
-  const fetchUserAsset = async () => {
-    return await getUserAsset();
+  const fetchUniversalTransferHistory = async () => {
+    return await getUserUniversalTransferHistory({ type: 'FUNDING_MAIN'});
   }
 
   const accountInfo = await fetchAccountInfo();
-  const userAssets = await fetchUserAsset();
-  console.log(userAssets);
+  const userUniversalTransferHistory = await fetchUniversalTransferHistory();
+  console.log(userUniversalTransferHistory);
 
   return (
     <div>
