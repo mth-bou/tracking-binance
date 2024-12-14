@@ -1,5 +1,6 @@
 import React from 'react';
 import { APP_URL } from "@/constants/constants";
+import { getUserAsset } from "@/lib/asset";
 
 const page = async () => {
 
@@ -8,7 +9,13 @@ const page = async () => {
     return await response.json();
   }
 
+  const fetchUserAsset = async () => {
+    return await getUserAsset();
+  }
+
   const accountInfo = await fetchAccountInfo();
+  const userAssets = await fetchUserAsset();
+  console.log(userAssets);
 
   return (
     <div>
