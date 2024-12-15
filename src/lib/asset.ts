@@ -1,5 +1,11 @@
 import { client } from "@/lib/binance-client";
-import { ConvertDustParams, GetAssetParams, UniversalTransferParams, UniversalTransferType } from "binance/lib/types/spot";
+import {
+  CloudMiningHistoryParams,
+  ConvertDustParams, DelegationHistoryParams,
+  GetAssetParams,
+  UniversalTransferParams,
+  UniversalTransferType
+} from "binance/lib/types/spot";
 
 export const getAssetDetail = async () => {
   try {
@@ -63,6 +69,64 @@ export const convertDustAssetsToBnb = async (params: ConvertDustParams) => {
 export const getDustLog = async () => {
   try {
     return await client.getDustLog();
+  } catch (error: any) {
+    throw new Error(error.response?.data || error.message);
+  }
+}
+
+/**
+ * Query asset dividend record.
+ */
+export const getAssetDividendRecord = async () => {
+  try {
+    return await client.getAssetDividendRecord();
+  } catch (error: any) {
+    throw new Error(error.response?.data || error.message);
+  }
+}
+
+/**
+ * Fetch trade fee.
+ */
+export const getTradeFee = async () => {
+  try {
+    return await client.getTradeFee();
+  } catch (error: any) {
+    throw new Error(error.response?.data || error.message);
+  }
+}
+
+/**
+ * Query funding wallet.
+ * @param params
+ */
+export const getFundingWallet = async (params: GetAssetParams) => {
+  try {
+    return await client.getFundingAsset(params);
+  } catch (error: any) {
+    throw new Error(error.response?.data || error.message);
+  }
+}
+
+/**
+ * Fetch user's cloud mining payment and refund history.
+ * @param params
+ */
+export const getCloudMiningPaymentAndRefundHistory = async (params: CloudMiningHistoryParams) => {
+  try {
+    return await client.getCloudMiningHistory(params);
+  } catch (error: any) {
+    throw new Error(error.response?.data || error.message);
+  }
+}
+
+/**
+ * Query user's delegation history.
+ * @param params
+ */
+export const getUserDelegationHistory = async (params: DelegationHistoryParams) => {
+  try {
+    return await client.getDelegationHistory(params);
   } catch (error: any) {
     throw new Error(error.response?.data || error.message);
   }
