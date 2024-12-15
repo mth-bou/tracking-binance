@@ -5,14 +5,6 @@ export const client = new MainClient({
   api_secret: process.env.BINANCE_API_SECRET,
 });
 
-export const getAccountInfo = async () => {
-  try {
-    return await client.getAccountInfo();
-  } catch (error: any) {
-    throw new Error(error.response?.data || error.message);
-  }
-}
-
 export const getExchangeInfo = async () => {
   try {
     return await client.getExchangeInfo();
