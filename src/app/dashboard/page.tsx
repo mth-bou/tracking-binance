@@ -1,6 +1,6 @@
 import React from 'react';
 import { APP_URL } from "@/constants/constants";
-import { getUserUniversalTransferHistory } from "@/lib/asset";
+import { getUserUniversalTransferHistory } from "@/lib/wallet/asset";
 
 const page = async () => {
 
