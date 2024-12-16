@@ -19,7 +19,7 @@ export const getCoinsInformation = async () => {
 }
 
 /**
- * Submit a withdraw request
+ * Submit a withdrawal request
  * @param params {WithdrawParams}
  */
 export const submitWithdraw = async (params: WithdrawParams) => {

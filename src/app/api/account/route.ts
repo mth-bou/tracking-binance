@@ -1,4 +1,4 @@
-import { getAccountInfo } from "@/lib/binance-client";
+import { getAccountInfo } from "@/lib/wallet/account";
 
 export async function GET() {
   try {
