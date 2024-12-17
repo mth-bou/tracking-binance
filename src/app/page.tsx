@@ -2,7 +2,7 @@ import React from 'react';
 import { APP_URL } from "@/constants/constants";
 import { getUserUniversalTransferHistory } from "@/lib/wallet/asset";
 
-const page = async () => {
+const DashboardPage = async () => {
 
   const fetchAccountInfo = async () => {
     const response =  await fetch(APP_URL + '/api/account');
@@ -25,4 +25,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default DashboardPage;
