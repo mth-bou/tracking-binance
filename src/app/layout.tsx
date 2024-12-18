@@ -1,22 +1,13 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lato as FontSans } from "next/font/google";
+import { Lato as FontSans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/sidebar/app-sidebar";
 import { cookies } from "next/headers"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "@/components/header/header";
 
 export const metadata: Metadata = {
   title: "Binance Manager Dashboard",
@@ -34,13 +25,14 @@ const RootLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  // Sidebar state management
   const cookieStore = await cookies();
   const defaultOpen = cookieStore.get("sidebar:state")?.value === "true";
 
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={cn("min-h-screen bg-background font-sans font-normal antialiased", lato.variable, geistSans.variable, geistMono.variable)}
+        className={cn("min-h-screen font-sans font-normal antialiased", lato.variable)}
       >
         <ThemeProvider
           attribute="class"
@@ -51,10 +43,12 @@ const RootLayout = async ({
           <div className="flex h-screen overflow-hidden w-full">
             <SidebarProvider defaultOpen={defaultOpen}>
               <AppSidebar />
-              <main>
-                <SidebarTrigger />
-                {children}
-              </main>
+              <SidebarInset>
+                <Header/>
+                <main className="w-full container bg-background">
+                  {children}
+                </main>
+              </SidebarInset>
             </SidebarProvider>
           </div>
         </ThemeProvider>

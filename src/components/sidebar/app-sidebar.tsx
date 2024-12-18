@@ -4,10 +4,21 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarHeader,
-  SidebarFooter, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton
+  SidebarFooter,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton
 } from "@/components/ui/sidebar";
-import { ChevronUp, Home, Inbox, Settings, User2 } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  ChartNoAxesColumnIcon,
+  ChartPieIcon,
+  Command,
+  Home,
+  Settings,
+  WalletCardsIcon
+} from "lucide-react";
+import UserSidebar from "@/components/sidebar/user-sidebar";
 
 // Menu items.
 const items = [
@@ -17,33 +28,66 @@ const items = [
     icon: Home,
   },
   {
+    title: "Performances",
+    url: "/performances",
+    icon: ChartNoAxesColumnIcon,
+  },
+  {
+    title: "Portefeuille",
+    url: "/wallet",
+    icon: WalletCardsIcon,
+  },
+  {
     title: "Reporting",
-    url: "#",
-    icon: Inbox,
+    url: "/reporting",
+    icon: ChartPieIcon,
   },
   {
     title: "Paramètres",
-    url: "#",
+    url: "/settings",
     icon: Settings,
   },
-]
+];
 
-const AppSidebar = () => {
+const data = {
+  user: {
+    name: "John Doe",
+    email: "john.doe@gmail.com",
+    avatar: "https://avatar.iran.liara.run/public/30"
+  }
+}
+
+const AppSidebar = ({ ...props }) => {
   return (
-    <Sidebar collapsible="icon">
-      <SidebarHeader/>
+    <Sidebar variant="inset" collapsible="icon" {...props}>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <a href="/">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <Command className="size-4" />
+                </div>
+                <div className="grid flex-1 text-left text-base leading-tight">
+                  <span className="truncate font-semibold">Binance</span>
+                  <span className="truncate text-xs">Manager</span>
+                </div>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="">Binance Manager</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-2">
               {items.map(item => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.title} className="">
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
-                      <item.icon size={24} />
-                      <span>{item.title}</span>
+                      <item.icon size={30} />
+                      <span className="text-base">{item.title}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -51,33 +95,10 @@ const AppSidebar = () => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarGroup/>
       </SidebarContent>
 
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <User2 size={24} /> Nom d'utilisateur
-                  <ChevronUp className="ml-auto" size={24} />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="top" className="w[---radix-popper-anchor-width]">
-                <DropdownMenuItem>
-                  <span>Mon compte</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Facturation</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Déconnexion</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <UserSidebar user={data.user} />
       </SidebarFooter>
     </Sidebar>
   );
