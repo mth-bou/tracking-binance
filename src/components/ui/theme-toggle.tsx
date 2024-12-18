@@ -14,7 +14,7 @@ const ThemeToggle = () => {
   if (!isMounted) return null;
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 px-2">
       <Sun size={18} />
       <Switch
         checked={theme === 'dark'}

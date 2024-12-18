@@ -19,6 +19,7 @@ import {
   WalletCardsIcon
 } from "lucide-react";
 import UserSidebar from "@/components/sidebar/user-sidebar";
+import NavSecondary from "@/components/sidebar/nav-secondary";
 
 // Menu items.
 const items = [
@@ -95,6 +96,9 @@ const AppSidebar = ({ ...props }) => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        <NavSecondary className="mt-auto" />
+
       </SidebarContent>
 
       <SidebarFooter>
