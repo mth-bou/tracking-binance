@@ -1,15 +1,21 @@
+"use client";
+
 import React from 'react';
-import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar";
+import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 import ThemeToggle from "@/components/ui/theme-toggle";
 
 const NavSecondary = ({ ...props }) => {
+	const { state } = useSidebar();
+
 	return (
 		<SidebarGroup {...props}>
 			<SidebarGroupContent>
 				<SidebarMenu>
-					<SidebarMenuItem>
-						<ThemeToggle />
-					</SidebarMenuItem>
+					{state !== "collapsed" && (
+						<SidebarMenuItem>
+							<ThemeToggle/>
+						</SidebarMenuItem>
+					)}
 				</SidebarMenu>
 			</SidebarGroupContent>
 		</SidebarGroup>

@@ -96,9 +96,7 @@ const AppSidebar = ({ ...props }) => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
         <NavSecondary className="mt-auto" />
-
       </SidebarContent>
 
       <SidebarFooter>
