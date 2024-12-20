@@ -7,11 +7,7 @@ export async function GET(req: NextRequest) {
 
 	const params: GetAssetParams = {
 		asset: searchParams.get('asset') || undefined,
-		needBtcValuation: searchParams.get('needBtcValuation') === 'true'
-			? true
-			: searchParams.get('needBtcValuation') === 'false'
-				? false
-				: undefined,
+		needBtcValuation: searchParams.get('needBtcValuation') === 'true' || false, // default to false
 	};
 
 	try {
