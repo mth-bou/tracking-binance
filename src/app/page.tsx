@@ -5,7 +5,7 @@ import { getUserUniversalTransferHistory } from "@/lib/wallet/asset";
 const DashboardPage = async () => {
 
   const fetchAccountInfo = async () => {
-    const response =  await fetch(APP_URL + '/api/account');
+    const response =  await fetch(APP_URL + '/api/account/info');
     return await response.json();
   }
 

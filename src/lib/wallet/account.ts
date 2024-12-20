@@ -35,7 +35,7 @@ export const enableFastWithdrawSwitch = async () => {
 /**
  * POST method
  */
-export const disabledFastWithdrawSwitch = async () => {
+export const disableFastWithdrawSwitch = async () => {
   try {
     return await client.disableFastWithdrawSwitch();
   } catch (error: any) {
