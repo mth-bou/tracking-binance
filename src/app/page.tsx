@@ -1,6 +1,6 @@
 import React from 'react';
-import { fetchAllCoins } from "@/app/services/wallet/capital";
-import { getOwnedCoins } from "@/app/utils/filters";
+import { fetchAllCoins } from "@/services/wallet/capital";
+import { getOwnedCoins } from "@/utils/filters";
 
 const DashboardPage = async () => {
 
