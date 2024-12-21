@@ -1,11 +1,15 @@
 import React from 'react';
 import { fetchAllCoins } from "@/services/wallet/capital";
 import { getOwnedCoins } from "@/utils/filters";
+import { fetchUserWalletBalance } from "@/services/wallet/asset";
 
 const DashboardPage = async () => {
 
+  const userWalletBalance = await fetchUserWalletBalance();
   const allCoins = await fetchAllCoins();
   const ownedCoins = getOwnedCoins(allCoins);
+
+  console.log(userWalletBalance);
 
   return (
     <div>
